@@ -1,10 +1,9 @@
 package main
 
-
 import (
 	"log"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -13,12 +12,12 @@ func main() {
 		log.Fatalf("Error: %s", err)
 	}
 	nc.Subscribe("foo", func(_ *nats.Msg) {
-	        // Heavy processing
+		// Heavy processing
 		for i := 0; i < 10000000000; i++ {
 		}
 	})
 	nc.Subscribe("bar", func(_ *nats.Msg) {
-	        // Not heavy processing
+		// Not heavy processing
 	})
 	select {}
 }

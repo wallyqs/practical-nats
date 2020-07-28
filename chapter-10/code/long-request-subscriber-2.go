@@ -1,11 +1,10 @@
 package main
 
-
 import (
 	"log"
 	"time"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -14,12 +13,12 @@ func main() {
 		log.Fatal(err)
 	}
 	myInbox := nats.NewInbox()
-	nc.Subscribe("very.long.request", func(m *nats.Msg){
+	nc.Subscribe("very.long.request", func(m *nats.Msg) {
 		log.Println("[Processing] Announcing own inbox...")
 		nc.PublishRequest(m.Reply, myInbox, []byte(""))
 	})
 
-	nc.Subscribe(myInbox, func(m *nats.Msg){
+	nc.Subscribe(myInbox, func(m *nats.Msg) {
 		log.Println("[Processing] Message:", string(m.Data))
 		time.Sleep(20 * time.Second)
 		nc.Publish(m.Reply, []byte("done!"))

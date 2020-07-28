@@ -1,13 +1,12 @@
 package main
 
-
 import (
 	"context"
 	"fmt"
 	"log"
 	"time"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -41,7 +40,7 @@ func main() {
 		replies = append(replies, id)
 
 		// Extend deadline on each successful response.
-		t.Reset(1*time.Second)
+		t.Reset(1 * time.Second)
 	}
 	log.Printf("Received %d responses in %s", len(replies), time.Since(startTime))
 

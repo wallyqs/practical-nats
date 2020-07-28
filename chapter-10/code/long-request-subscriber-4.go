@@ -1,13 +1,12 @@
 package main
 
-
 import (
 	"log"
 	"time"
 
 	"sync"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -24,7 +23,7 @@ func main() {
 		l.Unlock()
 
 		if shouldSkip {
-		        // Reply with empty inbox to signal that
+			// Reply with empty inbox to signal that
 			// was not available to process request.
 			nc.PublishRequest(m.Reply, "", []byte(""))
 			return
