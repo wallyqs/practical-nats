@@ -1,18 +1,17 @@
 package main
 
-
 import (
 	"log"
 	"time"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
-        opts := nats.DefaultOptions
+	opts := nats.DefaultOptions
 
-        // Arbitrarily small reconnecting buffer
-        opts.ReconnectBufSize = 256
+	// Arbitrarily small reconnecting buffer
+	opts.ReconnectBufSize = 256
 	nc, err := opts.Connect()
 	if err != nil {
 		log.Fatalf("Error: %s", err)

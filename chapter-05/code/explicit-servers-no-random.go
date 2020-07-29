@@ -1,15 +1,14 @@
 package main
 
-
 import (
 	"log"
 	"runtime"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
-        servers := "nats://127.0.0.1:4222,nats://127.0.0.1:4223,nats://127.0.0.1:4224"
+	servers := "nats://127.0.0.1:4222,nats://127.0.0.1:4223,nats://127.0.0.1:4224"
 	nc, err := nats.Connect(servers, nats.DontRandomize())
 	if err != nil {
 		log.Fatalf("Error: %s", err)

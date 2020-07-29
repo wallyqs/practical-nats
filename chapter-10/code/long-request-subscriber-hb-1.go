@@ -1,12 +1,11 @@
 package main
 
-
 import (
 	"encoding/json"
 	"log"
 	"time"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 type RequestWithKeepAlive struct {
@@ -24,7 +23,7 @@ func main() {
 		var req RequestWithKeepAlive
 		err := json.Unmarshal(m.Data, &req)
 		if err != nil {
-		        log.Printf("Error: %s", err)
+			log.Printf("Error: %s", err)
 			nc.Publish(m.Reply, []byte("error!"))
 			return
 		}

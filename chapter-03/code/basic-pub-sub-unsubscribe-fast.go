@@ -1,11 +1,10 @@
 package main
 
-
 import (
 	"log"
 	"runtime"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 )
 
 func main() {
@@ -23,7 +22,7 @@ func main() {
 	for i := 0; i < 5; i++ {
 		nc.Publish("greeting", []byte("hello world!!!"))
 	}
-        nc.Flush()
+	nc.Flush()
 
 	// Remove subscription
 	sub.Unsubscribe()

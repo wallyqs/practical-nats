@@ -7,17 +7,17 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/nats-io/go-nats"
-	"github.com/wallyqs/practical-nats/chapter-06/code/api-server"
+	"github.com/nats-io/nats.go"
+	apiserver "github.com/wallyqs/practical-nats/chapter-06/code/api-server"
 	"github.com/wallyqs/practical-nats/chapter-06/code/kit"
 )
 
 func main() {
 	var (
-		showHelp bool
-		showVersion bool
+		showHelp     bool
+		showVersion  bool
 		serverListen string
-		natsServers string
+		natsServers  string
 	)
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: api-server [options...]\n\n")

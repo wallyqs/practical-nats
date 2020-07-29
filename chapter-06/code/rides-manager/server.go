@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nats-io/go-nats"
+	"github.com/nats-io/nats.go"
 	"github.com/wallyqs/practical-nats/chapter-06/code/kit"
 )
 
